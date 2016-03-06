@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>h5validate</title>
+    <style type="text/css">
+        div {
+            padding: 10px;
+        }
+
+        .title {
+            width: 100px;
+        }
+
+
+        fieldset {
+            width: auto;
+            float: left;
+        }
+        .err {
+            border: 1px red solid;
+        }
+        .errmsg {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <fieldset>
+        <legend>type验证</legend>
+        <form id="ftype">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="title">隐藏：</td>
+                    <td>
+                        <input type="email" required style="display: none" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">email：</td>
+                    <td>
+                        <input type="email" required  />
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">email：</td>
+                    <td>
+                        <select id="HouseName" name="HouseName" required>
+                            <option value="">请选择</option>
+                            <option>北京</option>
+                            <option>深圳</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">mobile：</td>
+                    <td>
+                        <input type="mobile" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">number：</td>
+                    <td>
+                        <input type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" onclick="return $.h5validate.validate('#ftype')" value="验证" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>特性验证</legend>
+        <form id="ffeatur">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="title">email：</td>
+                    <td>
+                        <input type="email" required />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">QQ：</td>
+                    <td>
+                        <input type="text" qq />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">电话：</td>
+                    <td>
+                        <input type="text" tel />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">minlength,maxlength：</td>
+                    <td>
+                        <input type="text" minlength="2" maxlength="4" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">min，max：</td>
+                    <td>
+                        <input type="number" min="100" max="1000" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">数字：</td>
+                    <td>
+                        <input type="text" number />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">pattern：</td>
+                    <td>
+                        <input type="text" pattern="\d" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">密码：</td>
+                    <td><input type="password" id="pass" required /></td>
+                </tr>
+                <tr>
+                    <td class="title">密码确认：</td>
+                    <td><input type="password" equalto="#pass" required /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="验证"  onclick="return $.h5validate.validate('#ffeatur')"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>其他验证</legend>
+        <form id="fother">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="title">必须输入：</td>
+                    <td>
+                        <input type="text" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">双重验证，QQ号，长度</td>
+                    <td>
+                        <input type="qq" minlength="8" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" onclick="return $.h5validate.validate('#fother')" value="验证" />
+                        <input type="submit" onclick="return $('#fother').validate(true)" value="验证" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>消息提示</legend>
+        <form id="fmsg">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="title">默认消息：</td>
+                    <td>
+                        <input type="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">title消息</td>
+                    <td>
+                        <input type="email" title="请输入您的Email地址" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">自定义消息</td>
+                    <td>
+                        <input type="email" title="长度在7-10位之间的邮箱地址" maxlength="10" min="7" minmsg="您的邮箱真短啊！" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" onclick="return $.h5validate.validate('#fmsg')" value="验证" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>其他功能</legend>
+        <form id="fvaliding">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="title">默认消息：</td>
+                    <td>
+                        <input type="email" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">title消息</td>
+                    <td>
+                        <input type="email" title="请输入您的Email地址" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">title消息</td>
+                    <td>
+                        <input type="date" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">自定义消息</td>
+                    <td>
+                        <input type="email" title="长度在7-10位之间的邮箱地址" maxlength="10" minlength="7" minlengthmsg="您的邮箱真短啊！" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">email：</td>
+                    <td>
+                        <select id="HouseName" name="HouseName" required>
+                            <option value="">请选择</option>
+                            <option>北京</option>
+                            <option>深圳</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" onclick="$.h5validate.valiing('#fvaliding')" value="启动实时验证" />
+                        <input type="submit" onclick="return $('#fvaliding').validate()" value="验证" />
+                        <input type="submit" onclick="return $.h5validate.validate('#fvaliding', true)" value="验证所有" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+    <script src="script/zepto.js"></script>
+    <script src="script/h5validate.js"></script>
+</body>
+</html>
